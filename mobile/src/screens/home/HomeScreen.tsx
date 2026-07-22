@@ -12,7 +12,7 @@ import { palette } from '../../theme/colors';
 export function HomeScreen() {
   const theme = useTheme();
   const quickActions: Array<[string, LucideIcon]> = [
-    ['AI Study', Bot],
+    ['Study Help', Bot],
     ['Bus', Bus],
     ['Lost & Found', Megaphone],
     ['QR Check-in', QrCode],
