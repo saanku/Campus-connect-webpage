@@ -1,0 +1,14 @@
+import axios from 'axios';
+
+export const api = axios.create({
+  baseURL: 'https://api.toch-connect.local/v1',
+  timeout: 12000,
+});
+
+export function setAuthToken(token?: string | null) {
+  if (token) {
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  } else {
+    delete api.defaults.headers.common.Authorization;
+  }
+}

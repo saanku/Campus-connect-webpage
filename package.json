@@ -1,0 +1,17 @@
+{
+  "name": "campus-connect",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TOCH Connect website-first campus portal with a mobile scaffold kept for later conversion.",
+  "workspaces": [
+    "mobile"
+  ],
+  "scripts": {
+    "start:web": "npx --yes http-server . -p 5173 -c-1",
+    "android": "npm --workspace mobile run android",
+    "start:mobile": "npm --workspace mobile run start"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
