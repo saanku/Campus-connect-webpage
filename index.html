@@ -519,6 +519,14 @@
         display: grid;
       }
 
+      .anonymous-page {
+        display: none;
+      }
+
+      .anonymous-page.active {
+        display: block;
+      }
+
       .admin-page {
         display: none;
       }
@@ -1065,6 +1073,7 @@
         <nav class="nav" aria-label="Primary navigation">
           <button class="active" data-page="feed"><span><i class="icon-tile">H</i> Home</span></button>
           <button data-page="messages"><span><i class="icon-tile">M</i> Messages</span><span class="badge">9</span></button>
+          <button data-page="anonymous"><span><i class="icon-tile">A</i> Anonymous</span></button>
           <button data-page="feed"><span><i class="icon-tile">S</i> Stories</span></button>
           <button data-page="feed"><span><i class="icon-tile">N</i> Notes</span></button>
           <button data-page="feed"><span><i class="icon-tile">E</i> Events</span></button>
@@ -1097,6 +1106,7 @@
           <div class="stories">
             <button class="story"><span class="story-ring"><span>AM</span></span>Your story</button>
             <button class="story"><span class="story-ring"><span>DJ</span></span>Diya</button>
+            <button class="story"><span class="story-ring"><span>NS</span></span>notjustserahh</button>
             <button class="story"><span class="story-ring"><span>IC</span></span>IEDC</button>
             <button class="story"><span class="story-ring"><span>NS</span></span>NSS</button>
             <button class="story"><span class="story-ring"><span>PL</span></span>Placements</button>
@@ -1202,37 +1212,31 @@
               <div class="bubble me">Yes. I made a web-ready version and pinned the event in the feed.</div>
               <div class="bubble">Perfect. I will post it after lunch.</div>
             </div>
-            <section class="anon-section">
-              <div class="anon-head">
-                <div>
-                  <h3>Anonymous Community Chat</h3>
-                  <p class="muted">A separate public room where names, departments, and IDs stay hidden.</p>
-                </div>
-                <span class="chip active">Anonymous Mode</span>
-              </div>
-              <div class="anon-create">
-                <input type="text" placeholder="Create anonymous group chat, e.g. Exam Help S5" />
-                <button class="primary-button">Create Anonymous Group</button>
-              </div>
-              <div class="anon-grid">
-                <article class="anon-card">
-                  <span class="chip">Anonymous 184</span>
-                  <p>Anyone else preparing for the DBMS internal? Need tips for normalization problems.</p>
-                </article>
-                <article class="anon-card">
-                  <span class="chip">Anonymous 072</span>
-                  <p>Bus route B is late again. Can someone confirm if it crossed the bridge?</p>
-                </article>
-                <article class="anon-card">
-                  <span class="chip">Anonymous 311</span>
-                  <p>Robotics registration desk is open near Innovation Lab. No names shown here, just updates.</p>
-                </article>
-              </div>
-            </section>
             <footer class="chat-composer">
-              <input type="text" placeholder="Write a message or anonymous community update..." />
+              <input type="text" placeholder="Write a message..." />
               <button class="primary-button">Send</button>
             </footer>
+          </section>
+        </section>
+
+        <section class="anonymous-page" id="anonymousPage">
+          <section class="anon-section" style="border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow)">
+            <div class="anon-head">
+              <div>
+                <h2>Anonymous Space</h2>
+                <p class="muted">A separate student community area where names, departments, and IDs stay hidden.</p>
+              </div>
+              <span class="chip active">Anonymous Mode</span>
+            </div>
+            <div class="anon-create">
+              <input type="text" placeholder="Create anonymous group chat, e.g. Exam Help S5" />
+              <button class="primary-button">Create Anonymous Group</button>
+            </div>
+            <div class="anon-grid">
+              <article class="anon-card"><span class="chip">Anonymous 184</span><p>Anyone else preparing for the DBMS internal? Need tips for normalization problems.</p></article>
+              <article class="anon-card"><span class="chip">Anonymous 072</span><p>Bus route B is late again. Can someone confirm if it crossed the bridge?</p></article>
+              <article class="anon-card"><span class="chip">Anonymous 311</span><p>Robotics registration desk is open near Innovation Lab. No names shown here, just updates.</p></article>
+            </div>
           </section>
         </section>
 
@@ -1336,6 +1340,7 @@
 
         <section class="panel">
           <div class="panel-head"><h3>Suggested</h3><button class="secondary-button">All</button></div>
+          <div class="suggestion"><div class="avatar teal">NS</div><div><h4>notjustserahh</h4><p class="muted">Student creator</p></div><button>Follow</button></div>
           <div class="suggestion"><div class="avatar rose">NS</div><div><h4>NSS Volunteers</h4><p class="muted">Campus service group</p></div><button>Follow</button></div>
           <div class="suggestion"><div class="avatar amber">AC</div><div><h4>Arts Club</h4><p class="muted">Events and galleries</p></div><button>Follow</button></div>
           <div class="suggestion"><div class="avatar teal">PL</div><div><h4>Placement Cell</h4><p class="muted">Career updates</p></div><button>Follow</button></div>
@@ -1355,6 +1360,7 @@
       const adminOnlyFields = document.querySelectorAll(".admin-only");
       const feedPage = document.querySelector("#feedPage");
       const messagesPage = document.querySelector("#messagesPage");
+      const anonymousPage = document.querySelector("#anonymousPage");
       const adminPage = document.querySelector("#adminPage");
       let selectedRole = "student";
       let selectedMode = "existing";
@@ -1411,6 +1417,7 @@
       function showPage(page, activeButton = null) {
         feedPage.classList.toggle("hidden", page !== "feed");
         messagesPage.classList.toggle("active", page === "messages");
+        anonymousPage.classList.toggle("active", page === "anonymous");
         adminPage.classList.toggle("active", page === "admin");
         document.querySelectorAll("[data-page]").forEach((item) => {
           item.classList.toggle("active", activeButton ? item === activeButton : item.dataset.page === page);
