@@ -1,6 +1,6 @@
-# TOCH Connect
+# Campus Connect
 
-TOCH Connect is a website-first campus social portal. The current root prototype is an Instagram-style campus web experience with login, feed posts, stories, messages, anonymous community chat, student/admin access modes, events, notes, and profile panels.
+Canpus Connect is a website-first campus social portal. The current root prototype is an Instagram-style campus web experience with login, feed posts, stories, messages, anonymous community chat, student/admin access modes, events, notes, and profile panels.
 
 The React Native mobile scaffold is still kept in `mobile/` for later conversion.
 
